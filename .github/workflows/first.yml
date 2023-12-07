@@ -5,3 +5,12 @@ jobs:
     runs-on: ubuntu-latest  # GitHub에서 제공하는 가상머신 환경
     steps: 
       - run: echo 'Hello, Github Actions!'
+  pwd-ls: 
+    name: PWD & LS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print working directory
+        run: pwd
+      - name: List File
+        run: ls -al
+    
