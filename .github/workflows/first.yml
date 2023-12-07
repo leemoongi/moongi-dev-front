@@ -1,2 +1,7 @@
 name: First Test
-on: push
+on: push  # 실행 트리거
+jobs:
+  echo:
+    runs-on: ubuntu-latest  # GitHub에서 제공하는 가상머신 환경
+    steps: 
+      - run: echo 'Hello, Github Actions!'
