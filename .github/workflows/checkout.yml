@@ -20,12 +20,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
+      - name: ls -al
+        run: ls -al
 
       - name: Run build
         run: nuxt build
 
-      - name: ls -al
-        run: ls -al
       
       - name: ls -al /var/www/moongi-dev
         run: ls -al /var/www/moongi-dev
