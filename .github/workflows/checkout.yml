@@ -17,8 +17,8 @@ jobs:
           java-version: 17
           distribution: 'oracle'
 
-      - name: ls -al 
-        run: ls -al
+      - name: ls -al /opt/hostedtoolcache/Java_Oracle_jdk/17/x64
+        run: ls -al /opt/hostedtoolcache/Java_Oracle_jdk/17/x64
 
       - name: pwd
         run: pwd
