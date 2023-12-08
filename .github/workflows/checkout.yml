@@ -31,19 +31,19 @@ jobs:
         run: ls -al
 
 
-    # deploy
-      - name: Deploy to EC2
-        uses: easingthemes/ssh-action@master
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.EC2_HOST }}
-          REMOTE_USER: ${{ secrets.EC2_USERNAME }} /var/www/moongi-dev
-          TARGET: ${{ secrets.TARGET_DIR }}
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            cd /var/www/moongi-dev
-            ls -al
-            # nginx -s reload
+    # # deploy
+    #   - name: Deploy to EC2
+    #     uses: easingthemes/ssh-action@master
+    #     with:
+    #       SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+    #       REMOTE_HOST: ${{ secrets.EC2_HOST }}
+    #       REMOTE_USER: ${{ secrets.EC2_USERNAME }} /var/www/moongi-dev
+    #       TARGET: ${{ secrets.TARGET_DIR }}
+    #       SCRIPT_BEFORE: |
+    #         whoami
+    #         ls -al
+    #       SCRIPT_AFTER: |
+    #         cd /var/www/moongi-dev
+    #         ls -al
+    #         # nginx -s reload
     
