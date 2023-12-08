@@ -31,17 +31,19 @@ jobs:
         run: ls -al
 
 
-    # # deploy
-
-    #   - name: Deploy to EC2
-    #     uses: appleboy/ssh-action@master
-    #     with:
-    #       host: ${{ secrets.EC2_HOST }}
-    #       username: ${{ secrets.EC2_USERNAME }}
-    #       key: ${{ secrets.EC2_PRIVATE_KEY }}
-    #       script: | 
-    #         cd /var/www/moongi-dev
-    #         git pull origin master
-    #         npm install
-    #         npm run build
+    # deploy
+      - name: Deploy to EC2
+        uses: easingthemes/ssh-action@master
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }} /var/www/moongi-dev
+          TARGET: ${{ secrets.TARGET_DIR }}
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            cd /var/www/moongi-dev
+            ls -al
+            # nginx -s reload
     
