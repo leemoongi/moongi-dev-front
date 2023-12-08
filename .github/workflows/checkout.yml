@@ -17,17 +17,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.16.0
-
+          
       - name: Install dependencies
         run: npm install
-        
-      - name: ls -al
-        run: ls -al
+
+      - name: yarn -version
+        run: yarn -version
 
       - name: Run build
         run: nuxt build
 
-      
       - name: ls -al /var/www/moongi-dev
         run: ls -al /var/www/moongi-dev
 
