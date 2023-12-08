@@ -9,4 +9,5 @@ jobs:
         with:
           path: our-source
       - run: ls -al our-source
+      - run: ls -al
       - run: cat .github/workflows/checkout.yml
