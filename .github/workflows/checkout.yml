@@ -8,17 +8,23 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - name: 1. Checkout brance
+      - name: Checkout brance
         uses: actions/checkout@v3
 
-      - name: 2. Set up JDK
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with: 
           java-version: 17
           distribution: 'oracle'
 
-      - name: ls -al /opt/hostedtoolcache/Java_Oracle_jdk/17/x64
-        run: ls -al /opt/hostedtoolcache/Java_Oracle_jdk/17/x64
-
-      - name: Java Version
+      - name: Java version
         run: java -version
+        
+      # - name: Grant execute permission for gradlew
+      #   run: chmod 777 gradlew 
+
+      - name: Build gradle
+        run: ./gradlew build
+
+      - name: log
+        run: ls -al ~/.gradle/wrapper
