@@ -5,38 +5,43 @@ on:
       - 'master'
   
 jobs:
-  checkout:
+  cicd:
     runs-on: ubuntu-latest
     steps:
+
+    # build
       - name: Checkout brance
         uses: actions/checkout@v3
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with: 
-          java-version: 17
-          distribution: 'oracle'
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.16.0
 
-      - name: Java version
-        run: java -version
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: nuxt build
 
       - name: ls -al
         run: ls -al
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
-          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
-
-      - name: Upload Jacoco Report
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/test/html
+      
+      - name: ls -al /var/www/moongi-dev
+        run: ls -al /var/www/moongi-dev
 
 
+    # # deploy
+
+    #   - name: Deploy to EC2
+    #     uses: appleboy/ssh-action@master
+    #     with:
+    #       host: ${{ secrets.EC2_HOST }}
+    #       username: ${{ secrets.EC2_USERNAME }}
+    #       key: ${{ secrets.EC2_PRIVATE_KEY }}
+    #       script: | 
+    #         cd /var/www/moongi-dev
+    #         git pull origin master
+    #         npm install
+    #         npm run build
+    
