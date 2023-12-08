@@ -8,14 +8,14 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout brance
-      #   run: actions/checkout@v3
+      - name: 1. Checkout brance
+        uses: actions/checkout@v3
 
-      # - name: Set up JDK
-      #   uses: actions/setup-java@v3
-      #   with: 
-      #     java-version: 17
-      #     distributtion: 'oracle'
+      - name: 2. Set up JDK
+        uses: actions/setup-java@v3
+        with: 
+          java-version: 17
+          distributtion: 'oracle'
 
       - name: ls -al 
         run: ls -al
