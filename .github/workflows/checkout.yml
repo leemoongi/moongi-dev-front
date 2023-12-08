@@ -19,3 +19,6 @@ jobs:
 
       - name: ls -al 
         run: ls -al
+
+      - name: pwd
+        run: pwd
