@@ -25,10 +25,10 @@ jobs:
         run: yarn -version
 
       - name: Run build
-        run: nuxt build
+        run: yarn generate
 
-      - name: ls -al /var/www/moongi-dev
-        run: ls -al /var/www/moongi-dev
+      - name: ls -al 
+        run: ls -al
 
 
     # # deploy
