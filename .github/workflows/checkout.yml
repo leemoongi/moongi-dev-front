@@ -1,13 +1,22 @@
 name: Our Workflow
-on: push
+on:
+  push:
+    branches:
+      - 'master'
+      # - 'dev'
+  
 jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -al
-      - uses: actions/checkout@v3
-        with:
-          path: our-source
-      - run: ls -al our-source
-      - run: ls -al
-      - run: cat our-source/.github/workflows/checkout.yml
+      - name: Checkout brance
+        run: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with: 
+          java-version: 17
+          distributtion: 'oracle'
+
+      - name: ls -al 
+        run: ls -al
