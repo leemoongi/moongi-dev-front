@@ -27,11 +27,20 @@ jobs:
       - name: Run build
         run: yarn generate
 
-      - name: ls -al 
-        run: ls -al
+      - name: Get Github Actions IP
+        id: ip
+        uses: haythem/public-ip@v1.2
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
 
-    # deploy
+      - name: Add Github Actions IP to Security group
+        run: aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@main
         with:
@@ -46,4 +55,7 @@ jobs:
             cd /var/www/moongi-dev
             ls -al
             # nginx -s reload
-    
+
+      - name: Remove Github Actions IP From Security Group
+        run: aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
