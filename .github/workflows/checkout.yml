@@ -47,12 +47,9 @@ jobs:
           TARGET: ${{ secrets.EC2_TARGET_DIR }}
           SOURCE: "dist/"
           SCRIPT_BEFORE: 
-            echo '===========================BEFORE==========================='
             sudo su
             rm -rf /var/www/moongi-dev/dist
-           
-          SCRIPT_AFTER: |
-            echo '===========================AFTER==========================='
+          SCRIPT_AFTER:
             sudo su
             chmod 777 -R /var/www/moongi-dev/
             service nginx stop
