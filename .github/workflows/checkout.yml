@@ -54,6 +54,7 @@ jobs:
           SOURCE: "dist/"
           SCRIPT_BEFORE: 
             echo '===========================BEFORE==========================='
+            echo '${{ secrets.TARGET_DIR }}'
             sudo su
             whoami
             rm -rf /var/www/moongi-dev/dist
@@ -63,10 +64,9 @@ jobs:
             echo '===========================AFTER==========================='
             whoami
             ls -al /var/www/moongi-dev/
+            
             # nginx -s reload
 
-            # /var/www/moongi-dev/dist
-            # SOURCE: ${{ secrets.SOURCE_DIR }}
 
 
       - name: Remove Github Actions IP From Security Group
