@@ -50,7 +50,7 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_BEFORE: |
             echo '===========================BEFORE==========================='
-            sudu su
+            sudo su
             rm -rf /var/www/moongi-dev/dist
             cd /var/www/moongi-dev/
             ls -al
