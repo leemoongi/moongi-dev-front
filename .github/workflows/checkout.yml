@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: yarn -version
-        run: yarn -version
-
       - name: Run build
         run: yarn generate
+        
+      - name: Dist location
+        run: ls -al
 
       - name: Get Github Actions IP
         id: ip
@@ -49,12 +49,19 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_BEFORE: |
+            rm -r /var/www/moongi-dev/dist
+            cd /var/www/moongi-dev
+            mv dist
             sudo su
             echo '안녕'
           SCRIPT_AFTER: |
             cd /var/www/moongi-dev
             ls -al
             # nginx -s reload
+
+            # /var/www/moongi-dev/dist
+            # SOURCE: ${{ secrets.SOURCE_DIR }}
+
 
       - name: Remove Github Actions IP From Security Group
         run: aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
