@@ -13,8 +13,8 @@ jobs:
       - name: Checkout brance
         uses: actions/checkout@v3
 
-      - name: ls -al | grep dist
-        run: cd dist
+      # - name: Not souch dist
+      #   run: cd dist
 
       - name: Set up node
         uses: actions/setup-node@v4
@@ -28,7 +28,7 @@ jobs:
         run: yarn generate
         
       - name: Dist location
-        run: ls -al
+        run: cd dist
 
       - name: Get Github Actions IP
         id: ip
