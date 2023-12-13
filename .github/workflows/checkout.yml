@@ -13,6 +13,9 @@ jobs:
       - name: Checkout brance
         uses: actions/checkout@v3
 
+      - name: ls -al | grep dist
+        run: ls -al | grep dist
+
       - name: Set up node
         uses: actions/setup-node@v4
         with:
@@ -48,16 +51,17 @@ jobs:
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
+          SOURCE: "dist/"
           SCRIPT_BEFORE: |
             echo '===========================BEFORE==========================='
             sudo su
             rm -rf /var/www/moongi-dev/dist
-            cd /var/www/moongi-dev/
-            ls -al
+            ls -al /var/www/moongi-dev/
+           
           SCRIPT_AFTER: |
-            cd /var/www/moongi-dev
             echo '===========================AFTER==========================='
-            ls -al
+            cd /var/www/moongi-dev
+            ls -al /var/www/moongi-dev/
             # nginx -s reload
 
             # /var/www/moongi-dev/dist
