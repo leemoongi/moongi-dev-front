@@ -49,8 +49,8 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_BEFORE: |
-            whoami
-            ls -al
+            sudos su
+            echo '안녕'
           SCRIPT_AFTER: |
             cd /var/www/moongi-dev
             ls -al
