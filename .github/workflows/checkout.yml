@@ -55,11 +55,13 @@ jobs:
           SCRIPT_BEFORE: |
             echo '===========================BEFORE==========================='
             sudo su
+            whoami
             rm -rf /var/www/moongi-dev/dist
             ls -al /var/www/moongi-dev/
            
           SCRIPT_AFTER: |
             echo '===========================AFTER==========================='
+            whoami
             cd /var/www/moongi-dev
             ls -al /var/www/moongi-dev/
             # nginx -s reload
