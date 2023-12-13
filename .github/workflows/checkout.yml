@@ -50,11 +50,11 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
-          TARGET: ${{ secrets.TARGET_DIR }}
+          # TARGET: ${{ secrets.TARGET_DIR }}
+          TARGET: "/var/www/moongi-dev/dist"
           SOURCE: "dist/"
           SCRIPT_BEFORE: 
             echo '===========================BEFORE==========================='
-            echo '${{ secrets.TARGET_DIR }}'
             sudo su
             whoami
             rm -rf /var/www/moongi-dev/dist
