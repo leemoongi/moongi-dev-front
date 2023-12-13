@@ -52,7 +52,7 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SOURCE: "dist/"
-          SCRIPT_BEFORE: |
+          SCRIPT_BEFORE: 
             echo '===========================BEFORE==========================='
             sudo su
             whoami
@@ -62,7 +62,6 @@ jobs:
           SCRIPT_AFTER: |
             echo '===========================AFTER==========================='
             whoami
-            cd /var/www/moongi-dev
             ls -al /var/www/moongi-dev/
             # nginx -s reload
 
