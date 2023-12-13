@@ -23,12 +23,6 @@ jobs:
 
       - name: Run build
         run: yarn generate
-        
-      - name: Dist location
-        run: cd dist
-
-      - name: pwd
-        run: pwd
 
       - name: Get Github Actions IP
         id: ip
@@ -50,8 +44,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
-          # TARGET: ${{ secrets.TARGET_DIR }}
-          TARGET: "/var/www/moongi-dev/dist"
+          TARGET: ${{ secrets.EC2_TARGET_DIR }}
+          # TARGET: "/var/www/moongi-dev/dist"
           SOURCE: "dist/"
           SCRIPT_BEFORE: 
             echo '===========================BEFORE==========================='
@@ -60,12 +54,11 @@ jobs:
            
           SCRIPT_AFTER: |
             echo '===========================AFTER==========================='
-            ls -al /var/www/moongi-dev/
+            sudo su
             chmod 777 -R /var/www/moongi-dev/
             nginx -s reload
 
-
-
       - name: Remove Github Actions IP From Security Group
         run: aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
 
