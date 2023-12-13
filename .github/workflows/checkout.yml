@@ -30,6 +30,9 @@ jobs:
       - name: Dist location
         run: cd dist
 
+      - name: pwd
+        run: pwd
+
       - name: Get Github Actions IP
         id: ip
         uses: haythem/public-ip@v1.3
