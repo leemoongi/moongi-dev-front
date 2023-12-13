@@ -49,7 +49,7 @@ jobs:
           REMOTE_USER: ${{ secrets.EC2_USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_BEFORE: |
-            sudos su
+            sudo su
             echo '안녕'
           SCRIPT_AFTER: |
             cd /var/www/moongi-dev
