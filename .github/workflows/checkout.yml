@@ -13,9 +13,6 @@ jobs:
       - name: Checkout brance
         uses: actions/checkout@v3
 
-      # - name: Not souch dist
-      #   run: cd dist
-
       - name: Set up node
         uses: actions/setup-node@v4
         with:
