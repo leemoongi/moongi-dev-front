@@ -64,7 +64,7 @@ jobs:
             echo '===========================AFTER==========================='
             whoami
             ls -al /var/www/moongi-dev/
-            
+            chmod 777 /var/www/moongi-dev/
             # nginx -s reload
 
 
